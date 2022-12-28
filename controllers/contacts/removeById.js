@@ -1,10 +1,10 @@
-const { Contact } = require("../../models/contact");
+const constacts = require("../../models/contacts")
 
-const {HttpError}  = require("../../helpers");
+const HttpError  = require("../../helpers");
 
-const removeById = async (req, res) => {
+const removeById = async (req, res, next) => {
     const { id } = req.params;
-    const result = await Contact.findByIdAndDelete(id);
+    const result = await constacts.removeContact(id);
 
     if (!result) {
       throw HttpError(404, "Not Found");
@@ -14,6 +14,10 @@ const removeById = async (req, res) => {
       message: "contact deleted"
     })
 
+    // 204 - статус тіло не відправляє
+    // res.json({
+    //   message: "Delete success"
+    // })
 }
 
 module.exports = removeById;
