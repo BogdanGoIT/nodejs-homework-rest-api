@@ -1,8 +1,11 @@
 const { Contact } = require("../../models/contact");
 
 const add = async (req, res) => {
+    console.log(req.user);
+    const { _id: owner } = req.user;
+    console.log(owner)
     // знайди в колекціїї Contacts
-    const result = await Contact.create(req.body);
+    const result = await Contact.create({...req.body, owner});
 
     res.status(201).json(result)
   

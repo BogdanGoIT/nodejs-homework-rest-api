@@ -20,7 +20,8 @@ const userSchema = new Schema({
         type: String,
         minlength: 6,
         required: true,
-    }
+    },
+    token: String
 }, { versionKey: false })
 
 userSchema.post("save", handleMongooseError)
