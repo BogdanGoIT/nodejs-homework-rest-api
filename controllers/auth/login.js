@@ -13,12 +13,14 @@ const login = async (req, res) => {
 
     const { email, password } = req.body;
 
+    // чи є користувач з таким Email ?
     const user = await User.findOne({ email });
 
     if (!user) {
         throw HttpError(401, "Email or password is wrong") // HttpError(401, "Email invalid)
     }
 
+    // порівнюємо пароль який прийшов з тим що зберігається в БД
     const passwordCompare = bcrypt.compare(password, user.password);
 
     if (!passwordCompare) {

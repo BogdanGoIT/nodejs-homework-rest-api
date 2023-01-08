@@ -5,10 +5,10 @@ const { User } = require("../../models/user");
 const { HttpError } = require("../../helpers");
 
 const register = async (req, res) => {
-    console.log(req.body);
 
     const { email, password } = req.body;
 
+    // чи є користувач з таким email ?
     const user = await User.findOne({ email });
 
     if (user) {
@@ -19,8 +19,10 @@ const register = async (req, res) => {
 
     const newUser = await User.create({...req.body, password: hashPassword});
 
+    console.log("newUser", newUser);
+
     res.status(201).json({
-        name: newUser.name,
+        subscription: newUser.subscription,
         email: newUser.email,
     })
 }
