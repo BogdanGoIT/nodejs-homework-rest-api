@@ -10,7 +10,7 @@ const getAll = async (req, res) => {
     // параметри запиту за замовчуванням {page: 1, limit: 10}
     const { page = 1, limit = 10 } = req.query;
     const skip = (page - 1) * limit;
-    const result = await Contact.find({owner}, "-favorite", { skip, limit}).populate("owner", "email")
+    const result = await Contact.find({owner}, { skip, limit}).populate("owner", "email")
 
     res.json(result);
 
