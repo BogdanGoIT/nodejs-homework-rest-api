@@ -2,8 +2,9 @@ const { Contact } = require("../../models/contact");
 
 const add = async (req, res) => {
     console.log(req.user);
+    // переименовать id на owner
     const { _id: owner } = req.user;
-    console.log(owner)
+
     // знайди в колекціїї Contacts
     const result = await Contact.create({...req.body, owner});
 
