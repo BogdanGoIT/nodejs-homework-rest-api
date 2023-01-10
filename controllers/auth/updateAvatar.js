@@ -15,13 +15,12 @@ const updateAvatar = async (req, res) => {
 
     await fs.rename(tmpUpload, resultUpload);
 
-await Jimp.read(resultUpload, (err, lenna) => {
-  if (err) throw err;
-  lenna
-    .resize(250, 250) // resize
-    .write(resultUpload); // save
-});
-
+    Jimp.read(resultUpload, (err, Image) => {
+    if (err) throw err;
+    Image
+        .resize(250, 250) // resize
+        .write(resultUpload); // save
+    });
 
     const avatarURL = path.join("avatars", filename);
 
