@@ -1,7 +1,7 @@
 const { Contact } = require("../../models/contact");
 
 const add = async (req, res) => {
-    console.log(req.user);
+
     // переименовать id на owner
     const { _id: owner } = req.user;
 
