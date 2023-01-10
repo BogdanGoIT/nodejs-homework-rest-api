@@ -44,6 +44,7 @@ const schemas = {
 
 const User = model("user", userSchema);
 
+// hw-05
 module.exports = {
     User,
     schemas,
