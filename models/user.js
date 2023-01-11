@@ -22,6 +22,10 @@ const userSchema = new Schema({
     enum: ["starter", "pro", "business"],
     default: "starter"
   },
+  avatarURL: {
+    type: String,
+    required: true,
+  },
   token: String
 }, { versionKey: false })
 
@@ -44,6 +48,7 @@ const schemas = {
 
 const User = model("user", userSchema);
 
+// hw-05
 module.exports = {
     User,
     schemas,
