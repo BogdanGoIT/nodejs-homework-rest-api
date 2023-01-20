@@ -5,12 +5,9 @@ const { User } = require("../../models/user");
 
 const { HttpError } = require("../../helpers");
 
-const { SECRET_KEY } = process.env
-console.log(SECRET_KEY);
+const { SECRET_KEY } = process.env;
 
 const login = async (req, res) => {
-    console.log(req.body);
-
     const { email, password } = req.body;
 
     // чи є користувач з таким Email ?
@@ -18,6 +15,10 @@ const login = async (req, res) => {
 
     if (!user) {
         throw HttpError(401, "Email or password is wrong") // HttpError(401, "Email invalid)
+    }
+
+    if (!user.verify) {
+        throw HttpError(401, "Email not verify");
     }
 
     // порівнюємо пароль який прийшов з тим що зберігається в БД
